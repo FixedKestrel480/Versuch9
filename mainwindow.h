@@ -3,13 +3,17 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include "map.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
 }
 QT_END_NAMESPACE
-
+/**
+ * @class MainWindow
+ * @brief Main GUI window of the application.
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -19,16 +23,23 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_addStadt_clicked();
+    void on_pushButton_addStadt_clicked(); //clicked button and add new city
 
-    void on_actionExit_triggered();
+    void on_actionExit_triggered();//Exit application
 
-    void on_actionClear_Scene_triggered();
+    void on_actionClear_Scene_triggered(); //clear graphics scene
 
-    void on_actionAbout_triggered();
+    void on_actionAbout_triggered(); //show message when input add Stadt
+
+    void on_pushButton_testDrawCity_clicked();
+
+    void on_Buttonmap_clicked();//draw all cities and streets from the map
+
+    void on_draw_city_clicked();//add two cities and connect with street
 
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene* scene;
+    QGraphicsScene* scene; //The graphics scene shown in the view
+    Map* p_map; //Pointer to the current map object
 };
 #endif // MAINWINDOW_H

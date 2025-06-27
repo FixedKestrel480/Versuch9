@@ -81,6 +81,45 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_testDrawCity">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Test Draw City</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Buttonmap">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Map hinzufügen</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="draw_city">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>210</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Strasse zeichnen</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

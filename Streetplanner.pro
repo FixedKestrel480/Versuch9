@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     abstractmap.cpp \
     city.cpp \
+    citydialog.cpp \
     main.cpp \
     mainwindow.cpp \
     map.cpp \
@@ -19,11 +20,13 @@ SOURCES += \
 HEADERS += \
     abstractmap.h \
     city.h \
+    citydialog.h \
     mainwindow.h \
     map.h \
     street.h
 
 FORMS += \
+    citydialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.

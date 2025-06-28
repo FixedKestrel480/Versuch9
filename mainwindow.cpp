@@ -4,6 +4,7 @@
 #include "map.h"
 #include "street.h"
 #include <QDebug>
+#include "citydialog.h"
 #include <QString>
 #include <QMessageBox>
 #include <QRandomGenerator>
@@ -111,5 +112,47 @@ void MainWindow::on_draw_city_clicked()
 
    // scene->clear();
     p_map->draw(*scene);
+}
+
+
+void MainWindow::on_Testknop_toggled(bool checked)
+{
+    if(checked){
+        ui->pushButton_testDrawCity->show();
+        ui->pushButton_addStadt->show();
+        ui->Buttonmap->show();
+        ui->draw_city->show();
+
+    } else {
+        ui->pushButton_testDrawCity->hide();
+        ui->pushButton_addStadt->hide();
+        ui->Buttonmap->hide();
+        ui->draw_city->hide();
+    }
+}
+
+
+void MainWindow::on_pushButton_city_clicked()
+{
+    CityDialog dialog(this);
+    int result = dialog.exec();
+
+    qDebug() << "Dialog:" << result;
+
+    if (result == QDialog::Accepted) {
+        // Uswe clicked Ok
+        QString name = dialog.getCityName();
+        int x = dialog.getX();
+        int y = dialog.getY();
+
+        qDebug() << "Stadt erzeugen:" << name << "in" << x << "," << y;
+
+        City* neueStadt = new City(name, x, y);
+        p_map->addCity(neueStadt);
+        neueStadt->draw(*scene);
+    } else {
+        qDebug() << "Dialog canceled.";
+    }
+
 }
 

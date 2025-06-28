@@ -120,6 +120,32 @@
      <string>Strasse zeichnen</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="Testknop">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>10</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Test-Knöpfe anzeigen</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_city">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>250</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add City</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

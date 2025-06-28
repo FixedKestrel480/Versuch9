@@ -37,6 +37,10 @@ private slots:
 
     void on_draw_city_clicked();//add two cities and connect with street
 
+    void on_Testknop_toggled(bool checked);
+
+    void on_pushButton_city_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene* scene; //The graphics scene shown in the view

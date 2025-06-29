@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include "map.h"
+#include "mapio.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,6 +22,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
 
 private slots:
     void on_pushButton_addStadt_clicked(); //clicked button and add new city
@@ -41,9 +43,12 @@ private slots:
 
     void on_pushButton_city_clicked();
 
+    void on_pushButton_fill_map_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene* scene; //The graphics scene shown in the view
     Map* p_map; //Pointer to the current map object
+    MapIo* p_mapIo;
 };
 #endif // MAINWINDOW_H

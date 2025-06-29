@@ -5,6 +5,9 @@
 #include "street.h"
 #include <QDebug>
 #include "citydialog.h"
+#include "mapionrw.h"
+#include "mapio.h"
+
 #include <QString>
 #include <QMessageBox>
 #include <QRandomGenerator>
@@ -21,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Connect ti QGraphicsView from UI
     ui->graphicsView->setScene(scene);
     p_map = new Map();
+    p_mapIo = new MapIoNrw(); //cambiar aqui el constructor
 }
 
 MainWindow::~MainWindow()
@@ -154,5 +158,13 @@ void MainWindow::on_pushButton_city_clicked()
         qDebug() << "Dialog canceled.";
     }
 
+}
+
+
+void MainWindow::on_pushButton_fill_map_clicked()
+{
+    p_mapIo->fillMap(*p_map); //fill map instance using p_mapIo
+    scene->clear();// clear scene
+    p_map->draw(*scene); // draw everything that contains p_map
 }
 

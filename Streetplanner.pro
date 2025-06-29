@@ -15,6 +15,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     map.cpp \
+    mapio.cpp \
+    mapionrw.cpp \
     street.cpp
 
 HEADERS += \
@@ -23,6 +25,8 @@ HEADERS += \
     citydialog.h \
     mainwindow.h \
     map.h \
+    mapio.h \
+    mapionrw.h \
     street.h
 
 FORMS += \

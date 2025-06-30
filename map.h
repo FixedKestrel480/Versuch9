@@ -26,7 +26,12 @@ public:
      * @brief Add a street to the map.
      * @param street Pointer to the Street to add.
      */
-    void addStreet(Street* street) override;
+    bool addStreet(Street* street) override;
+    City* findCity(const QString cityName) const override;
+    QVector<Street*> getStreetList(const City* city) const override;
+    City* getOppositeCity(const Street* street, const City* city) const override;
+    double getLength(const Street* street) const;
+
 private:
     QVector<City*> m_cities; // list city pointers at the map
     QVector<Street*> m_streets; //list street pointers at map

@@ -38,21 +38,21 @@ public:
      * @param Pointer to the street to be added
      * @return true if the street has beed added.
      */
-    virtual void addStreet(Street*) = 0;
+    virtual bool addStreet(Street*) = 0;
 
     /**
      * @brief Search for a city in this map by given name.
      * @param name
      * @return the city pointer, if city not found nullptr
      */
-    //virtual City* findCity(const QString cityName) const = 0;
+    virtual City* findCity(const QString cityName) const = 0;
 
     /**
      * @brief Search for streets in this map.
      * @param city where you want the street_list from
      * @return A list of all streets in this map connected to provided city.
      */
-    //virtual QVector<Street*> getStreetList(const City* city) const = 0;
+    virtual QVector<Street*> getStreetList(const City* city) const = 0;
 
     /**
      * @brief Look for opposite city.
@@ -60,7 +60,7 @@ public:
      * @param city
      * @return Opposite city of the street. If city has no connection to street returns nullptr.
      */
-    //virtual City* getOppositeCity(const Street* street, const City* city) const = 0;
+    virtual City* getOppositeCity(const Street* street, const City* city) const = 0;
 
     /**
      * @brief Calculate the street length.

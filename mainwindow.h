@@ -45,6 +45,10 @@ private slots:
 
     void on_pushButton_fill_map_clicked();
 
+    void on_pushButton_testAbstract_clicked();
+
+    void testAbstractMap();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene* scene; //The graphics scene shown in the view

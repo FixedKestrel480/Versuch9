@@ -23,6 +23,7 @@ public:
 
     City* getStartCity() const;
     City* getEndCity() const;
+    void drawRed(QGraphicsScene& scene) const;
 
 private:
     City* startCity;

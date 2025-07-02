@@ -67,7 +67,10 @@ public:
      * @param street
      * @return Length of the street
      */
-    //virtual double getLength(const Street* street) const = 0;
+    virtual double getLength(const Street* street) const = 0;
+
+    virtual QVector<City*> getCities() const = 0;
+
 };
 
 #endif // ABSTRACTMAP

@@ -8,6 +8,9 @@
 #include "mapionrw.h"
 #include "mapio.h"
 #include "abstractmap.h"
+#include "dijkstra.h"
+#include "pathdialog.h"
+
 
 #include <QString>
 #include <QMessageBox>
@@ -301,4 +304,72 @@ void MainWindow::testAbstractMap()
     qDebug() << "MapTest: End Test of the Map.";
 }
 
+
+
+void MainWindow::on_pushButton_TestDijikstra_clicked()
+{
+    // Zwei Teststädte (z.B. "A" und "C") suchen
+    const City* startCity = p_map->findCity("A");
+    const City* endCity = p_map->findCity("C");
+
+    if (!startCity || !endCity) {
+        qDebug() << "Eine oder beide Städte wurden nicht gefunden!";
+        return;
+    }
+
+    QString startName = startCity->getName();
+    QString endName   = endCity  ->getName();
+    QVector<Street*> weg = Dijkstra::search(*p_map, startName, endName);
+
+    qDebug() << "Gefundener Weg:";
+    for (const Street* s : weg) {
+        qDebug() << "Von" << s->getStartCity()->getName() << "nach" << s->getEndCity()->getName();
+    }
+
+    // Szene leeren und alles normal zeichnen
+    scene->clear();
+    p_map->draw(*scene);
+
+    // Alle Straßen des Weges rot und breit zeichnen
+    for (const Street* s : weg) {
+        const_cast<Street*>(s)->drawRed(*scene);
+    }
+}
+
+
+void MainWindow::on_pushButton_Path_clicked()
+{
+    PathDialog dialog(p_map->getCities(), this);
+    int result = dialog.exec();
+
+    if (result == QDialog::Accepted) {
+        QString startName = dialog.getStartCity();
+        QString endName = dialog.getEndCity();
+
+        if (startName == endName) {
+            QMessageBox::warning(this, "Fehler", "Start und Ziel dürfen nicht gleich sein!");
+            return;
+        }
+
+        QVector<Street*> weg = Dijkstra::search(*p_map, startName, endName);
+
+        if (weg.isEmpty()) {
+            QMessageBox::information(this, "Ergebnis", "Kein Weg gefunden!");
+            return;
+        }
+
+        qDebug() << "Gefundener Weg:";
+        for (const Street* s : weg) {
+            qDebug() << "Von" << s->getStartCity()->getName()
+            << " nach " << s->getEndCity()->getName();
+        }
+
+        scene->clear();
+        p_map->draw(*scene);
+
+        for (const Street* s : weg) {
+            s->drawRed(*scene);
+        }
+    }
+}
 

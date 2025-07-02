@@ -16,3 +16,11 @@ City* Street::getStartCity() const {
 City* Street::getEndCity() const {
     return endCity;
 }
+void Street::drawRed(QGraphicsScene& scene) const
+{
+    QPen pen(Qt::red);
+    pen.setWidth(4);
+    scene.addLine(getStartCity()->getX(), getStartCity()->getY(),
+                  getEndCity()->getX(), getEndCity()->getY(),
+                  pen);
+}

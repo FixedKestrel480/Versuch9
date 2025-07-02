@@ -30,7 +30,11 @@ public:
     City* findCity(const QString cityName) const override;
     QVector<Street*> getStreetList(const City* city) const override;
     City* getOppositeCity(const Street* street, const City* city) const override;
-    double getLength(const Street* street) const;
+    double getLength(const Street* street) const override;
+
+    QVector<City*> getCities() const override {
+        return m_cities;
+    }
 
 private:
     QVector<City*> m_cities; // list city pointers at the map

@@ -49,6 +49,10 @@ private slots:
 
     void testAbstractMap();
 
+    void on_pushButton_TestDijikstra_clicked();
+
+    void on_pushButton_Path_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene* scene; //The graphics scene shown in the view

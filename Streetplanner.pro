@@ -12,26 +12,31 @@ SOURCES += \
     abstractmap.cpp \
     city.cpp \
     citydialog.cpp \
+    dijkstra.cpp \
     main.cpp \
     mainwindow.cpp \
     map.cpp \
     mapio.cpp \
     mapionrw.cpp \
+    pathdialog.cpp \
     street.cpp
 
 HEADERS += \
     abstractmap.h \
     city.h \
     citydialog.h \
+    dijkstra.h \
     mainwindow.h \
     map.h \
     mapio.h \
     mapionrw.h \
+    pathdialog.h \
     street.h
 
 FORMS += \
     citydialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    pathdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

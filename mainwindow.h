@@ -58,5 +58,6 @@ private:
     QGraphicsScene* scene; //The graphics scene shown in the view
     Map* p_map; //Pointer to the current map object
     MapIo* p_mapIo;
+    void testDijkstra();
 };
 #endif // MAINWINDOW_H

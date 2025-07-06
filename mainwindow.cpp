@@ -10,6 +10,7 @@
 #include "abstractmap.h"
 #include "dijkstra.h"
 #include "pathdialog.h"
+#include "streetdialog.h"
 
 
 #include <QString>
@@ -142,26 +143,47 @@ void MainWindow::on_Testknop_toggled(bool checked)
 
 void MainWindow::on_pushButton_city_clicked()
 {
-    //create window so user can give coordinated and city name
-    CityDialog dialog(this);
-    int result = dialog.exec();
+    while(true)
+    {
+        //create window so user can give coordinated and city name
+        CityDialog dialog(this);
+        int result = dialog.exec();
 
-    qDebug() << "Dialog:" << result;
-// if ok
-    if (result == QDialog::Accepted) {
+        //qDebug() << "Dialog:" << result;
+        // if ok
+        if (result != QDialog::Accepted)
+        {
+            //if the user clicks canceled out of the function
+            qDebug() << "Dialog canceled.";
+            return;
+        }
         // Uswe clicked Ok
         QString name = dialog.getCityName();
         int x = dialog.getX();
         int y = dialog.getY();
+        // validate that the name is not empty
+        if (name.trimmed().isEmpty())
+        {
+            QMessageBox::warning(this, "Fehler", "Bitte einen gültigen Namen eingeben!");
+            continue; // show the dialog again
+        }
+        // validate that the coordinates are no negative
+        if (x < 0 || y < 0)
+        {
+            QMessageBox::warning(this, "Fehler", "Bitte gültige Koordinaten eingeben!");
+            continue;
+        }
 
+        //if everything is correct create and add it
         qDebug() << "Stadt erzeugen:" << name << "in" << x << "," << y;
 
-        //create new city with users caracteristics
         City* neueStadt = new City(name, x, y);
-        p_map->addCity(neueStadt); //put it in the map list
-        neueStadt->draw(*scene);// draw it
-    } else {
-        qDebug() << "Dialog canceled.";
+        p_map->addCity(neueStadt);
+        neueStadt->draw(*scene);
+
+        // Salir del bucle
+        break;
+
     }
 
 }
@@ -367,5 +389,48 @@ void MainWindow::on_pushButton_Path_clicked()
             s->drawRed(*scene);
         }
     }
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    if (p_map->getCities().size() < 2) {
+        QMessageBox::warning(this, "Fehler", "Es müssen mindestens zwei Städte existieren!");
+        return;
+    }
+
+    StreetDialog dialog(p_map->getCities(), this);
+    int result = dialog.exec();
+
+    if (result != QDialog::Accepted)
+        return;
+
+    QString startName = dialog.getStartCity();
+    QString endName = dialog.getEndCity();
+
+    if (startName == endName) {
+        QMessageBox::warning(this, "Fehler", "Start und Ziel dürfen nicht gleich sein!");
+        return;
+    }
+
+    City* startCity = p_map->findCity(startName);
+    City* endCity = p_map->findCity(endName);
+
+    if (!startCity || !endCity) {
+        QMessageBox::warning(this, "Fehler", "Eine oder beide Städte wurden nicht gefunden!");
+        return;
+    }
+
+    Street* street = new Street(startCity, endCity);
+    bool success = p_map->addStreet(street);
+
+    if (!success) {
+        QMessageBox::information(this, "Info", "Straße konnte nicht hinzugefügt werden.");
+        delete street; // no memory leak
+        return;
+    }
+
+    // draw the scene
+    p_map->draw(*scene);
 }
 

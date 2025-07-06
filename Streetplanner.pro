@@ -19,7 +19,8 @@ SOURCES += \
     mapio.cpp \
     mapionrw.cpp \
     pathdialog.cpp \
-    street.cpp
+    street.cpp \
+    streetdialog.cpp
 
 HEADERS += \
     abstractmap.h \
@@ -31,12 +32,14 @@ HEADERS += \
     mapio.h \
     mapionrw.h \
     pathdialog.h \
-    street.h
+    street.h \
+    streetdialog.h
 
 FORMS += \
     citydialog.ui \
     mainwindow.ui \
-    pathdialog.ui
+    pathdialog.ui \
+    streetdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

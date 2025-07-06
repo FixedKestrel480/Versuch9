@@ -53,6 +53,8 @@ private slots:
 
     void on_pushButton_Path_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene* scene; //The graphics scene shown in the view
